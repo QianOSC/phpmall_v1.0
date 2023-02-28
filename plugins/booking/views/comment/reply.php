@@ -1,0 +1,20 @@
+<?php
+/**
+ * @link http://www.92mj.vip/
+ * @copyright ©2021 南京千境网络科技有限公司
+ * @author Qian
+ */
+
+Yii::$app->loadViewComponent('app-comment-reply');
+?>
+<div id="app" v-cloak>
+    <app-comment-reply navigate_url='plugin/booking/mall/comment'></app-comment-reply>
+</div>
+<script>
+const app = new Vue({
+    el: '#app',
+    mounted() {
+        if (getQuery('id')) {}
+    }
+});
+</script>

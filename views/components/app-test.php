@@ -1,0 +1,23 @@
+<?php
+/**
+ * @author Qian
+ */
+?>
+<style>
+    .app-test {
+        background: #ff4544;
+        padding: 10px 20px;
+        color: #fff;
+        border-radius: 2px;
+    }
+</style>
+<template id="app-test">
+    <div class="app-test">
+        APPTEST组件
+    </div>
+</template>
+<script>
+    Vue.component('app-test', {
+        template: '#app-test',
+    });
+</script>

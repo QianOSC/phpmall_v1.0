@@ -1,0 +1,52 @@
+<?php
+/**
+ * @copyright ©2021 南京千境网络科技有限公司
+ * @author Qian
+ */
+
+namespace app\plugins\region\forms\api;
+
+use app\core\response\ApiCode;
+use app\models\Model;
+use app\plugins\region\forms\common\CommonRegion;
+
+class IndexForm extends Model
+{
+    public $province_id;
+    public $level;
+
+    public function rules()
+    {
+        return [
+            [['province_id'], 'required'],
+            [['level'], 'integer']
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'province_id' => 'province_id',
+        ];
+    }
+
+    public function search()
+    {
+        try {
+            $common = CommonRegion::getInstance();
+            $common->user_id = \Yii::$app->user->id;
+            $common->province_id = $this->province_id;
+            $info = $common->index($this->level);
+
+            return [
+                'code' => ApiCode::CODE_SUCCESS,
+                'data' => $info
+            ];
+        } catch (\Exception $e) {
+            return [
+                'code' => ApiCode::CODE_ERROR,
+                'msg' => $e->getMessage(),
+            ];
+        }
+    }
+}
